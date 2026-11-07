@@ -1,4 +1,4 @@
-const ALL_DIGITS = '0123456789abcdef';
+import { ALL_DIGITS } from './alphabet.js';
 
 export function createDigitValidator(base: number): (char: string) => boolean {
   return (char: string) => {
