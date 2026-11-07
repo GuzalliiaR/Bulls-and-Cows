@@ -1,0 +1,13 @@
+# Зависимости
+node_modules/
+
+# Артефакты сборки и отчёты
+dist/
+coverage/
+
+# Логи
+*.log
+
+# Рабочие заметки
+diff.txt
+task.md
