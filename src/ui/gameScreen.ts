@@ -119,7 +119,7 @@ export function renderGameScreen(
   });
 
   const attemptsLabel = createCustomElement('span', {
-    text: `Попыток: ${getAttemptsCount(state)}`,
+    text: `Попыток: ${getAttemptsCount(state)}, время: `,
   });
 
   // --- шапка ---
