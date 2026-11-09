@@ -1,6 +1,9 @@
 import type { IBullsCows } from './types.js';
 
-export function evaluateGuess(secret: string[], guess: string): IBullsCows {
+export function evaluateGuess(
+  secret: readonly string[],
+  guess: string,
+): IBullsCows {
   const normalizedSecret = secret.map((element) => element.toLowerCase());
   let restSecret = [...normalizedSecret];
   const arrGuess = guess.toLowerCase().split('');
