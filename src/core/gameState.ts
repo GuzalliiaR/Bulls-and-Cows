@@ -1,17 +1,19 @@
 import type { GameSettings, GameState } from './types.js';
+import { generateSecret } from './generateSecret.js';
+import { evaluateGuess } from './evaluateGuess.js';
 
 // Старт игры: передает настройки, случайно создает значение secret, записывает время старта игры
 export function startGame(
-  _settings: GameSettings,
-  _random: () => number = Math.random,
-  _timeNow: () => number = Date.now,
+  settings: GameSettings,
+  random: () => number = Math.random,
+  timeNow: () => number = Date.now,
 ): GameState {
   return {
     status: 'playing',
-    settings: null,
-    secret: [],
+    settings: { ...settings },
+    secret: generateSecret(settings.length, settings.base, random),
     history: [],
-    startedAt: null,
+    startedAt: timeNow(),
     finishedAt: null,
   };
 }
@@ -19,13 +21,33 @@ export function startGame(
 // Один ход: принимает текущее состояение, возвращает новое
 export function makeAttempt(
   state: GameState,
-  _guess: string,
-  _timeNow: () => number = Date.now,
+  guess: string,
+  timeNow: () => number = Date.now,
 ): GameState {
-  return state;
+  const normalizedGuess = guess.toLowerCase();
+
+  if (state.status !== 'playing' || state.settings === null) return state;
+
+  // если в history найдется повтор попытки, то ход не меняет состояние state
+  const isRepeatAttempt = state.history.some(
+    (attempt) => attempt.guess === normalizedGuess,
+  );
+  if (isRepeatAttempt) return state;
+
+  const result = evaluateGuess(state.secret, normalizedGuess);
+
+  // В этой попытке победа?
+  const isWon = result.bulls === state.settings.length;
+
+  return {
+    ...state,
+    history: [...state.history, { guess: normalizedGuess, result }],
+    status: isWon ? 'won' : state.status,
+    finishedAt: isWon ? timeNow() : state.finishedAt,
+  };
 }
 
-// Вызов к экрану настроек без перезагрузки страницы
+// Переход к экрану настроек без перезагрузки страницы
 export function resetGame(): GameState {
   return {
     status: 'settings',
@@ -39,13 +61,15 @@ export function resetGame(): GameState {
 
 // Сколько мс длился раунд
 export function getRoundDurationMs(
-  _state: GameState,
-  _timeNow: () => number = Date.now,
+  state: GameState,
+  timeNow: () => number = Date.now,
 ): number {
-  return 0;
+  if (state.startedAt === null) return 0;
+  const end = state.finishedAt ?? timeNow();
+  return end - state.startedAt;
 }
 
 // Сколько ходов сделано
-export function getAttemptsCount(_state: GameState): number {
-  return 0;
+export function getAttemptsCount(state: GameState): number {
+  return state.history.length;
 }
