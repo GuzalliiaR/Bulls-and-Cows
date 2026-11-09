@@ -1,0 +1,52 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  background: #10151c;
+  color: #e8eef7;
+  display: grid;
+  place-items: center;
+}
+
+#app {
+  width: min(520px, 100% - 2rem);
+  padding: 1.5rem;
+  background: #18212c;
+  border-radius: 12px;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: 1.4rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: #8fa3bb;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  border: 0;
+  border-radius: 8px;
+  background: #2f7df6;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+option:disabled {
+  color: #5a6b7f;
+}
