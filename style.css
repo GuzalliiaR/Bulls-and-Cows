@@ -1,0 +1,123 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  font-family: system-ui, sans-serif;
+  background: #10151c;
+  color: #e8eef7;
+  display: grid;
+  place-items: center;
+}
+
+#app {
+  width: min(520px, 100% - 2rem);
+  padding: 1.5rem;
+  background: #18212c;
+  border-radius: 12px;
+}
+
+h1 {
+  margin: 0 0 1rem;
+  font-size: 1.4rem;
+}
+
+.field {
+  display: grid;
+  gap: 0.35rem;
+  margin-bottom: 1rem;
+}
+
+.hint {
+  font-size: 0.85rem;
+  color: #8fa3bb;
+}
+
+button {
+  padding: 0.6rem 1rem;
+  border: 0;
+  border-radius: 8px;
+  background: #2f7df6;
+  color: #fff;
+  font-size: 1rem;
+  cursor: pointer;
+}
+
+option:disabled {
+  color: #5a6b7f;
+}
+
+.stats {
+  display: flex;
+  gap: 1rem;
+  font-variant-numeric: tabular-nums;
+  color: #8fa3bb;
+}
+
+.guess-form {
+  display: flex;
+  gap: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.guess-input {
+  flex: 1;
+  padding: 0.6rem 0.75rem;
+  border: 1px solid #2a3644;
+  border-radius: 8px;
+  background: #0e141b;
+  color: inherit;
+  font-size: 1.1rem;
+  letter-spacing: 0.35em;
+}
+
+.error {
+  flex-basis: 100%;
+  margin: 0;
+  color: #ff7b7b;
+  font-size: 0.85rem;
+  min-height: 1.2em;
+}
+
+.history {
+  list-style: none;
+  padding: 0;
+  margin: 0 0 1rem;
+  display: grid;
+  gap: 0.35rem;
+}
+
+.attempt {
+  display: flex;
+  justify-content: space-between;
+  padding: 0.45rem 0.75rem;
+  border-radius: 8px;
+  background: #0e141b;
+}
+
+.attempt-guess {
+  letter-spacing: 0.3em;
+  font-variant-numeric: tabular-nums;
+}
+
+.records {
+  width: 100%;
+  border-collapse: collapse;
+  margin-bottom: 1rem;
+}
+
+.records th,
+.records td {
+  padding: 0.4rem 0.5rem;
+  text-align: left;
+  border-bottom: 1px solid #22303f;
+}
+
+.records th {
+  color: #8fa3bb;
+  font-weight: 500;
+}
