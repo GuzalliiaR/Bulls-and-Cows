@@ -1,12 +1,7 @@
 import { countPossibleSecrets } from '../core/countPossibleSecrets.js';
 import createCustomElement from './element.js';
+import { BASES } from './format.js';
 const LENGTHS = [2, 3, 4, 5, 6];
-const BASES = [
-    { value: 2, label: 'bin' },
-    { value: 8, label: 'oct' },
-    { value: 10, label: 'dec' },
-    { value: 16, label: 'hex' },
-];
 export default function renderSettingsScreen(onStart) {
     let base = 10;
     let length = 4;

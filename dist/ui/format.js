@@ -1,9 +1,9 @@
-const BASE_LABELS = {
-    2: 'bin',
-    8: 'oct',
-    10: 'dec',
-    16: 'hex',
-};
+export const BASES = [
+    { value: 2, label: 'bin' },
+    { value: 8, label: 'oct' },
+    { value: 10, label: 'dec' },
+    { value: 16, label: 'hex' },
+];
 export function formatDuration(ms) {
     const totalSeconds = Math.floor(ms / 1000);
     const minutes = Math.floor(totalSeconds / 60);
@@ -11,6 +11,6 @@ export function formatDuration(ms) {
     return `${minutes}:${String(seconds).padStart(2, '0')}`;
 }
 export function baseLabel(base) {
-    return BASE_LABELS[base] ?? String(base);
+    return BASES.find((option) => option.value === base)?.label ?? String(base);
 }
 //# sourceMappingURL=format.js.map

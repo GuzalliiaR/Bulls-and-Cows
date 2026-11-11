@@ -1,9 +1,14 @@
-const BASE_LABELS: { [base: number]: string } = {
-  2: 'bin',
-  8: 'oct',
-  10: 'dec',
-  16: 'hex',
-};
+export interface BaseOption {
+  readonly value: number;
+  readonly label: string;
+}
+
+export const BASES: readonly BaseOption[] = [
+  { value: 2, label: 'bin' },
+  { value: 8, label: 'oct' },
+  { value: 10, label: 'dec' },
+  { value: 16, label: 'hex' },
+];
 
 export function formatDuration(ms: number): string {
   const totalSeconds = Math.floor(ms / 1000);
@@ -14,5 +19,5 @@ export function formatDuration(ms: number): string {
 }
 
 export function baseLabel(base: number): string {
-  return BASE_LABELS[base] ?? String(base);
+  return BASES.find((option) => option.value === base)?.label ?? String(base);
 }
